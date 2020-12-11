@@ -6,16 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import hi.iwansyy.mvvm.databinding.FragmentAddBinding
 import hi.iwansyy.mvvm.model.PostsModel
-import hi.iwansyy.mvvm.model.PostsService
-import hi.iwansyy.mvvm.repository.ClientPosts
-import hi.iwansyy.mvvm.repository.PostsRemoteRepository
-import hi.iwansyy.mvvm.repository.PostsRemoteViewRepositoryImpl
 import hi.iwansyy.mvvm.state.StatePosts
 import hi.iwansyy.mvvm.viewmodel.PostViewModel
-import hi.iwansyy.mvvm.viewmodel.PostsViewModelFactory
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class AddFragment : Fragment() {

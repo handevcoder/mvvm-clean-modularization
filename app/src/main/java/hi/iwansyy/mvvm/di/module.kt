@@ -25,7 +25,7 @@ val networkModule = module {
     }
     single {
         val BASE_URL = "https://jsonplaceholder.typicode.com/"
-        provideRetrofit(get())
+        provideRetrofit(BASE_URL)
     }
 }
 val repositoryModule = module {
