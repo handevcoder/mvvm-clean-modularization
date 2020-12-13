@@ -1,10 +1,15 @@
 package hi.iwansyy.mvvm.di
 
 import com.google.gson.GsonBuilder
-import hi.iwansyy.mvvm.model.PostsService
-import hi.iwansyy.mvvm.repository.PostsRemoteRepository
-import hi.iwansyy.mvvm.repository.PostsRemoteViewRepositoryImpl
-import hi.iwansyy.mvvm.viewmodel.PostViewModel
+import hi.iwansyy.mvvm.BuildConfig.DEBUG
+import hi.iwansyy.mvvm.data.persistances.contracts.PostsPersistanceContract
+import hi.iwansyy.mvvm.data.persistances.mappers.PostsMapper
+import hi.iwansyy.mvvm.data.persistances.repositories.PostsRepository
+import hi.iwansyy.mvvm.data.persistances.repositories.PostsRepositoryInterface
+import hi.iwansyy.mvvm.presentation.infrastructure.api.posts.service.PostsService
+import hi.iwansyy.mvvm.presentation.ui.viewmodels.PostViewModel
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -17,25 +22,50 @@ val apiModule = module {
     single { providePostService(get()) }
 }
 val networkModule = module {
-    fun provideRetrofit(BASE_URL: String): Retrofit {
+
+    val gson by lazy { GsonBuilder().setLenient().create() }
+
+    fun provideClient(): OkHttpClient{
+        val loggingInterceptor by lazy { HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY } }
+
+        return OkHttpClient.Builder()
+                    .apply { if (DEBUG) addInterceptor(loggingInterceptor) }
+                    .build()
+        }
+
+
+    fun provideRetrofit(client:OkHttpClient, BASE_URL: String): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
                 .build()
     }
+
+    single { provideClient() }
+
     single {
         val BASE_URL = "https://jsonplaceholder.typicode.com/"
-        provideRetrofit(BASE_URL)
+        provideRetrofit(get(), BASE_URL)
     }
 }
+
 val repositoryModule = module {
-    fun providePostsRepositoryModule(api: PostsService): PostsRemoteRepository {
-        return PostsRemoteViewRepositoryImpl(api)
+    fun providePostsMapper(mapper: PostsMapper): PostsMapper {
+        return mapper
     }
-    single { providePostsRepositoryModule(get()) }
+
+    fun providePostsRepositoryModule(api: PostsPersistanceContract, mapper: PostsMapper): PostsRepositoryInterface {
+        return PostsRepository(api, mapper)
+    }
+    single { providePostsMapper(get()) }
+    single { providePostsRepositoryModule(get(), providePostsMapper(get())) }
 }
+
+
+
 val viewModelModule = module {
     viewModel{
-        PostViewModel(postsRemoteRepository = get ())
+        PostViewModel(useCase = get())
     }
 }

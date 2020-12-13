@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/postsFragment"
-        android:name="hi.iwansyy.mvvm.view.PostsFragment"
+        android:name="hi.iwansyy.mvvm.presentation.ui.views.fragments.PostsFragment"
         android:label="fragment_posts"
         tools:layout="@layout/fragment_posts" >
         <action
@@ -19,16 +19,16 @@
     </fragment>
     <fragment
         android:id="@+id/addFragment"
-        android:name="hi.iwansyy.mvvm.view.AddFragment"
+        android:name="hi.iwansyy.mvvm.presentation.ui.views.fragments.AddFragment"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add" />
     <fragment
         android:id="@+id/updateFragment"
-        android:name="hi.iwansyy.mvvm.view.UpdateFragment"
+        android:name="hi.iwansyy.mvvm.presentation.ui.views.fragments.UpdateFragment"
         android:label="fragment_update"
         tools:layout="@layout/fragment_update" >
         <argument
             android:name="update"
-            app:argType="hi.iwansyy.mvvm.model.PostsModel" />
+            app:argType="hi.iwansyy.mvvm.domain.PostsDomain" />
     </fragment>
 </navigation>
