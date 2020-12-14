@@ -1,8 +1,8 @@
 package hi.iwansyy.mvvm.presentation.infrastructure.persistence.api
 
-import hi.iwansyy.mvvm.data.payload.api.posts.PostsRequest
-import hi.iwansyy.mvvm.data.payload.api.posts.PostsResponse
-import hi.iwansyy.mvvm.data.persistances.contracts.PostsPersistanceContract
+import hi.iwansyy.data.payload.api.posts.PostsRequest
+import hi.iwansyy.data.payload.api.posts.PostsResponse
+import hi.iwansyy.data.persistances.contracts.PostsPersistanceContract
 import hi.iwansyy.mvvm.presentation.infrastructure.api.posts.service.PostsService
 
 class PostsPersistance(private val service: PostsService): PostsPersistanceContract {

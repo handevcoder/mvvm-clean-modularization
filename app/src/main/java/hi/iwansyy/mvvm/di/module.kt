@@ -2,10 +2,10 @@ package hi.iwansyy.mvvm.di
 
 import com.google.gson.GsonBuilder
 import hi.iwansyy.mvvm.BuildConfig.DEBUG
-import hi.iwansyy.mvvm.data.persistances.contracts.PostsPersistanceContract
-import hi.iwansyy.mvvm.data.persistances.mappers.PostsMapper
-import hi.iwansyy.mvvm.data.persistances.repositories.PostsRepository
-import hi.iwansyy.mvvm.data.persistances.repositories.PostsRepositoryInterface
+import hi.iwansyy.data.persistances.contracts.PostsPersistanceContract
+import hi.iwansyy.data.persistances.mappers.PostsMapper
+import hi.iwansyy.data.persistances.repositories.PostsRepository
+import hi.iwansyy.data.persistances.repositories.PostsRepositoryInterface
 import hi.iwansyy.mvvm.presentation.infrastructure.api.posts.service.PostsService
 import hi.iwansyy.mvvm.presentation.ui.viewmodels.PostViewModel
 import okhttp3.OkHttpClient

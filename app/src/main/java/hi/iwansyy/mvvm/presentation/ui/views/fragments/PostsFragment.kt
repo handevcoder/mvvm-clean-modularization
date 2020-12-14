@@ -9,20 +9,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import hi.iwansyy.mvvm.R
-import hi.iwansyy.mvvm.data.persistances.contracts.PostsPersistanceContract
-import hi.iwansyy.mvvm.data.persistances.mappers.PostsMapper
-import hi.iwansyy.mvvm.data.persistances.mappers.PostsMapperInterface
-import hi.iwansyy.mvvm.data.persistances.repositories.PostsRepository
-import hi.iwansyy.mvvm.data.persistances.repositories.PostsRepositoryInterface
+import hi.iwansyy.data.persistances.contracts.PostsPersistanceContract
+import hi.iwansyy.data.persistances.mappers.PostsMapper
+import hi.iwansyy.data.persistances.mappers.PostsMapperInterface
+import hi.iwansyy.data.persistances.repositories.PostsRepository
+import hi.iwansyy.data.persistances.repositories.PostsRepositoryInterface
 import hi.iwansyy.mvvm.databinding.FragmentPostsBinding
-import hi.iwansyy.mvvm.domain.PostsDomain
 import hi.iwansyy.mvvm.presentation.infrastructure.misc.showToast
 import hi.iwansyy.mvvm.presentation.infrastructure.persistence.api.PostsPersistance
 import hi.iwansyy.mvvm.presentation.ui.adapters.AdapterPost
 import hi.iwansyy.mvvm.presentation.ui.states.StatePosts
 import hi.iwansyy.mvvm.presentation.ui.viewmodels.PostViewModel
 import hi.iwansyy.mvvm.presentation.ui.views.activities.PostsUseCaseInterface
-import hi.iwansyy.mvvm.usecase.cases.posts.PostsUseCase
+import hi.iwansyy.usecase.PostsUseCase
 import org.koin.android.ext.android.get
 
 class PostsFragment : Fragment(), AdapterPost.PostsListener {
@@ -77,7 +76,7 @@ class PostsFragment : Fragment(), AdapterPost.PostsListener {
         }
     }
 
-    override fun onUpdate(domain: PostsDomain) {
+    override fun onUpdate(domain: hi.iwansyy.domain.PostsDomain) {
         val action = PostsFragmentDirections.actionPostsFragmentToUpdateFragment(domain)
         findNavController().navigate(action)
     }

@@ -5,28 +5,28 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import hi.iwansyy.mvvm.databinding.ItemPostsBinding
-import hi.iwansyy.mvvm.domain.PostsDomain
+import hi.iwansyy.domain.PostsDomain
 
 class AdapterPost(private val context: Context, private val listener: PostsListener) :
     RecyclerView.Adapter<AdapterPost.ViewHolder>() {
 
     interface PostsListener {
-        fun onUpdate(domain: PostsDomain)
+        fun onUpdate(domain: hi.iwansyy.domain.PostsDomain)
         fun onDelete(id: Int)
     }
 
-    var list = mutableListOf<PostsDomain>()
+    var list = mutableListOf<hi.iwansyy.domain.PostsDomain>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    fun insertPosts(domain: PostsDomain) {
+    fun insertPosts(domain: hi.iwansyy.domain.PostsDomain) {
         list.add(0, domain)
         notifyItemInserted(0)
     }
 
-    fun updatePosts(domain: PostsDomain) {
+    fun updatePosts(domain: hi.iwansyy.domain.PostsDomain) {
         val index = list.indexOfFirst { it.id == domain.id }
         if (index != -1) {
             list[index] = domain
@@ -34,7 +34,7 @@ class AdapterPost(private val context: Context, private val listener: PostsListe
         }
     }
 
-    fun deletePosts(domain: PostsDomain) {
+    fun deletePosts(domain: hi.iwansyy.domain.PostsDomain) {
         val index = list.indexOfFirst { it.id == domain.id }
         if (index != -1) {
             list.removeAt(index)
@@ -43,7 +43,7 @@ class AdapterPost(private val context: Context, private val listener: PostsListe
     }
 
     inner class ViewHolder(val binding: ItemPostsBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindData(domain: PostsDomain) {
+        fun bindData(domain: hi.iwansyy.domain.PostsDomain) {
             binding.run {
                 tvId.text = domain.id.toString()
                 tvTitle.text = domain.title

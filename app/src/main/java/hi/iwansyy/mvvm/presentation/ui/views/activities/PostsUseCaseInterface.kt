@@ -1,12 +1,12 @@
 package hi.iwansyy.mvvm.presentation.ui.views.activities
 
-import hi.iwansyy.mvvm.domain.PostsDomain
+import hi.iwansyy.domain.PostsDomain
 
 interface PostsUseCaseInterface {
-    suspend fun getAllPosts(): List<PostsDomain>
-    suspend fun getPostsById(id: Int): PostsDomain
-    suspend fun insertPosts(body: PostsDomain): PostsDomain
-    suspend fun updatePosts(id: Int, body: PostsDomain): PostsDomain
-    suspend fun deletePosts(id: Int): PostsDomain
+    suspend fun getAllPosts(): List<hi.iwansyy.domain.PostsDomain>
+    suspend fun getPostsById(id: Int): hi.iwansyy.domain.PostsDomain
+    suspend fun insertPosts(body: hi.iwansyy.domain.PostsDomain): hi.iwansyy.domain.PostsDomain
+    suspend fun updatePosts(id: Int, body: hi.iwansyy.domain.PostsDomain): hi.iwansyy.domain.PostsDomain
+    suspend fun deletePosts(id: Int): hi.iwansyy.domain.PostsDomain
 
 }

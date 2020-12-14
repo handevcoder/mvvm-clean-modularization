@@ -1,7 +1,7 @@
 package hi.iwansyy.mvvm.presentation.infrastructure.api.posts.service
 
-import hi.iwansyy.mvvm.data.payload.api.posts.PostsRequest
-import hi.iwansyy.mvvm.data.payload.api.posts.PostsResponse
+import hi.iwansyy.data.payload.api.posts.PostsRequest
+import hi.iwansyy.data.payload.api.posts.PostsResponse
 import retrofit2.http.*
 
 interface PostsService {

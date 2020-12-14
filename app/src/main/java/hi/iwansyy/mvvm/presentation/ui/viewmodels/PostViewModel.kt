@@ -1,7 +1,7 @@
 package hi.iwansyy.mvvm.presentation.ui.viewmodels
 
 import androidx.lifecycle.*
-import hi.iwansyy.mvvm.domain.PostsDomain
+import hi.iwansyy.domain.PostsDomain
 import hi.iwansyy.mvvm.presentation.ui.states.StatePosts
 import hi.iwansyy.mvvm.presentation.ui.views.activities.PostsUseCaseInterface
 import kotlinx.coroutines.Dispatchers
@@ -36,14 +36,14 @@ class PostViewModel(private val useCase: PostsUseCaseInterface) : BaseViewModel(
         }
     }
 
-    fun insertPosts(domain: PostsDomain){
+    fun insertPosts(domain: hi.iwansyy.domain.PostsDomain){
         callCoroutines {
             val posts = useCase.insertPosts(domain)
             mutableState.postValue(StatePosts.SuccessfullyInsertPosts(posts))
         }
     }
 
-    fun updatePosts(domain: PostsDomain){
+    fun updatePosts(domain: hi.iwansyy.domain.PostsDomain){
         callCoroutines {
             val posts = useCase.updatePosts(domain.id, domain)
             mutableState.postValue(StatePosts.SuccessfullyUpdatePosts(posts))
